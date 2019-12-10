@@ -9,22 +9,45 @@
 import UIKit
 
 class PokemonDetailVC: UIViewController {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var weaknessLabel: UILabel!
+    @IBOutlet weak var setLabel: UILabel!
+    
+    var pokemon: Cards?
+    
+//---------------------------------------------------------
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateUI()
     }
+
+
+//---------------------------------------------------------
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func updateUI(){
+        guard let poke = pokemon else {
+            return
+        }
+        nameLabel.text = poke.name
+        typeLabel.text = "\(poke.types?.first ?? "") type"
+        weaknessLabel.text = "Weaknesses: \(poke.weaknesses?.first?.type ?? "") Damage: \(poke.weaknesses?.first?.value ?? "")"
+        setLabel.text = (poke.set)
+        
+        NetworkHelper.shared.performDataTask(with: poke.imageUrlHiRes) { [unowned self] (result) in
+            switch result{
+            case .failure(let appError):
+                print("appError: \(appError)")
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: image)
+                }
+            }
+        }
     }
-    */
-
 }

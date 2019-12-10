@@ -9,16 +9,27 @@
 import UIKit
 
 class PokemonCell: UITableViewCell {
+    
+    @IBOutlet weak var pokemonThumbImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var pokemon: Cards?
+    
+//---------------------------------------------------------
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-      
+    
+    func configureCell(for poke: Cards){
+        nameLabel.text = poke.name
+        NetworkHelper.shared.performDataTask(with: poke.imageUrl) { [unowned self] (result) in
+            switch result{
+            case .failure(let appError):
+                print("appError: \(appError)")
+                
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.pokemonThumbImage.image = UIImage(data: image)
+                }
+            }
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-     
-    }
-
 }
