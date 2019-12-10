@@ -19,10 +19,12 @@ struct ComicAPIClient {
             case .failure(let appError):
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
+                
                 do{
-                    let comicSearch = try JSONDecoder().decode(Comic.self, from: data)
-                    let comics = comicSearch
+                    let comicQuery = try JSONDecoder().decode(Comic.self, from: data)
+                    let comics = comicQuery
                     completion(.success(comics))
+                    
                 }catch{
                     completion(.failure(.decodingError(error)))
                 }
