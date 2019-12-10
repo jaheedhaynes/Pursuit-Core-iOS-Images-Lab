@@ -31,15 +31,15 @@ class PokemonDetailVC: UIViewController {
     
     
     func updateUI(){
-        guard let poke = pokemon else {
+        guard let pokemonChar = pokemon else {
             return
         }
-        nameLabel.text = poke.name
-        typeLabel.text = "\(poke.types?.first ?? "") type"
-        weaknessLabel.text = "Weaknesses: \(poke.weaknesses?.first?.type ?? "") Damage: \(poke.weaknesses?.first?.value ?? "")"
-        setLabel.text = (poke.set)
+        nameLabel.text = pokemonChar.name
+        typeLabel.text = "\(pokemonChar.types?.first ?? "") type"
+        weaknessLabel.text = "Weaknesses: \(pokemonChar.weaknesses?.first?.type ?? "") Damage: \(pokemonChar.weaknesses?.first?.value ?? "")"
+        setLabel.text = (pokemonChar.set)
         
-        NetworkHelper.shared.performDataTask(with: poke.imageUrlHiRes) { [unowned self] (result) in
+        NetworkHelper.shared.performDataTask(with: pokemonChar.imageUrlHiRes) { [unowned self] (result) in
             switch result{
             case .failure(let appError):
                 print("appError: \(appError)")

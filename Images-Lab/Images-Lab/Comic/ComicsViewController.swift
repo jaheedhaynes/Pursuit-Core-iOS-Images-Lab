@@ -73,11 +73,11 @@ class ComicsViewController: UIViewController {
 //---------------------------------------------------------
 
     
-    @IBAction func stepperClicked(_ sender: UIStepper) {
+    @IBAction func stepperPressed(_ sender: UIStepper) {
         loadComic(comicDay: Int(sender.value))
     }
     
-    @IBAction func mostRecentButtonClicked(_ sender: UIButton) {
+    @IBAction func mostRecentButtonPressed(_ sender: UIButton) {
         loadComic(comicDay: Int(stepper.maximumValue))
     }
     

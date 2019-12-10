@@ -119,10 +119,10 @@
 			children = (
 				30F28CD4239F06E0007F0F28 /* AppDelegate.swift */,
 				30F28CD6239F06E0007F0F28 /* SceneDelegate.swift */,
+				305DE253239F5E9E00F0C7CD /* NetworkHelper.swift */,
 				30F28CDA239F06E0007F0F28 /* Main.storyboard */,
 				305DE259239F62C100F0C7CD /* Comic */,
 				305DE264239F67CE00F0C7CD /* Pokemon */,
-				305DE253239F5E9E00F0C7CD /* NetworkHelper.swift */,
 				30F28CDD239F06E0007F0F28 /* Assets.xcassets */,
 				30F28CDF239F06E0007F0F28 /* LaunchScreen.storyboard */,
 				30F28CE2239F06E0007F0F28 /* Info.plist */,

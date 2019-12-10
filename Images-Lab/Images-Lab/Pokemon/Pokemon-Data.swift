@@ -19,6 +19,7 @@ struct Cards: Decodable {
     let set: String
     let weaknesses: [Weaknesses]?
 }
+
 struct Weaknesses: Decodable{
     let type: String
     let value: String

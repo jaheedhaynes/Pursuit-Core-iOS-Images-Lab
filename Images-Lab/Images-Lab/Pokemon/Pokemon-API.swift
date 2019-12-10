@@ -20,8 +20,8 @@ struct PokemonAPI {
             case .success(let data):
                 
                 do{
-                    let pokemonData = try JSONDecoder().decode(Pokemon.self, from: data)
-                    let pokemon = pokemonData.cards
+                    let pokemonCardData = try JSONDecoder().decode(Pokemon.self, from: data)
+                    let pokemon = pokemonCardData.cards
                     completion(.success(pokemon))
                     
                 }catch{

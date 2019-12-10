@@ -18,9 +18,9 @@ class PokemonCell: UITableViewCell {
 //---------------------------------------------------------
 
     
-    func configureCell(for poke: Cards){
-        nameLabel.text = poke.name
-        NetworkHelper.shared.performDataTask(with: poke.imageUrl) { [unowned self] (result) in
+    func configureCell(for pokemon: Cards){
+        nameLabel.text = pokemon.name
+        NetworkHelper.shared.performDataTask(with: pokemon.imageUrl) { [unowned self] (result) in
             switch result{
             case .failure(let appError):
                 print("appError: \(appError)")
