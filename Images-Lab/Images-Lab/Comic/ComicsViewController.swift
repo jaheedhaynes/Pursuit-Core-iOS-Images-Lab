@@ -16,7 +16,7 @@ class ComicsViewController: UIViewController {
     
     var comics = [Comic]()
     
-    var comicDayNum: Double = 0.0  {
+    var comicNum: Double = 0.0  {
         didSet{
             print("value: \(stepper.value)")
         }
