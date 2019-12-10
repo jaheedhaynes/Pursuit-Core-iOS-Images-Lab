@@ -27,20 +27,20 @@ class ComicsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureStepper()
-        loadComic(comicDay: Int(stepper.value))
+        loadComic(comic: Int(stepper.value))
     }
     
 //---------------------------------------------------------
 
-    func loadComic(comicDay:Int){
-        ComicAPIClient.getComic(for: comicDay) { (result) in
+    func loadComic(comic:Int){
+        ComicAPIClient.getComic(for: comic) { (result) in
             switch result{
             case .failure(let appError):
                 print("appError: \(appError)")
             case .success(let comic):
                 DispatchQueue.main.async {
                     self.textField.text = comic.num.description
-                    print(comic.img)
+            
                     self.loadComicImage(comicImage: comic.img)
                     self.stepper.value = Double(comic.num)
                 }
@@ -52,7 +52,7 @@ class ComicsViewController: UIViewController {
         NetworkHelper.shared.performDataTask(with: comicImage) { (result) in
             switch result{
             case .failure(let appError):
-                print(appError)
+                print("appError: \(appError)")
             case .success(let data):
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
@@ -65,7 +65,7 @@ class ComicsViewController: UIViewController {
     
     func configureStepper(){
         stepper.minimumValue = Double(comics.first?.num ?? 1)
-        stepper.maximumValue = Double(comics.last?.num ?? 614)
+        stepper.maximumValue = Double(comics.last?.num ?? 2_000)
         stepper.stepValue = 1.0
         stepper.value = Double(comics.first?.num ?? 1)
     }
@@ -74,11 +74,11 @@ class ComicsViewController: UIViewController {
 
     
     @IBAction func stepperPressed(_ sender: UIStepper) {
-        loadComic(comicDay: Int(sender.value))
+        loadComic(comic: Int(sender.value))
     }
     
     @IBAction func mostRecentButtonPressed(_ sender: UIButton) {
-        loadComic(comicDay: Int(stepper.maximumValue))
+        loadComic(comic: Int(stepper.maximumValue))
     }
     
     @IBAction func randomButtonPressed(_ sender: UIButton) {
@@ -89,7 +89,7 @@ class ComicsViewController: UIViewController {
         
         let randomComic = Double.random(in: stepper.minimumValue...stepper.maximumValue)
         
-        loadComic(comicDay: Int(randomComic))
+        loadComic(comic: Int(randomComic))
     }
     
 }
