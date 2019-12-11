@@ -9,10 +9,6 @@
 import Foundation
 
 struct Comic: Decodable {
-    let month: String
     var num: Int
-    let year: String
     let img: String
-    let title: String
-    let day: String
 }
