@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class PokemonViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,6 +25,7 @@ class PokemonViewController: UIViewController {
         }
     }
     
+    var currentScope = SearchScope.first
     //---------------------------------------------------------
     
     override func viewDidLoad() {
@@ -87,14 +90,27 @@ extension PokemonViewController: UITableViewDelegate{
 }
 
 extension PokemonViewController: UISearchBarDelegate{
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
             loadData()
             return
         }
         filterSearch(for: searchText)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0:
+            currentScope = SearchScope.first
+            
+        default:
+            print("not a valid search scope")
+            
+        }
     }
 }

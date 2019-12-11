@@ -24,3 +24,7 @@ struct Weaknesses: Decodable{
     let type: String
     let value: String
 }
+
+enum SearchScope {
+    case first
+}
