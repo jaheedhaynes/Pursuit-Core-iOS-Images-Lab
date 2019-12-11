@@ -18,7 +18,7 @@ class ComicsViewController: UIViewController {
     
     var comicNum: Double = 0.0  {
         didSet{
-            print("value: \(stepper.value)")
+            print("comic value: \(stepper.value)")
         }
     }
  
@@ -65,7 +65,7 @@ class ComicsViewController: UIViewController {
     
     func configureStepper(){
         stepper.minimumValue = Double(comics.first?.num ?? 1)
-        stepper.maximumValue = Double(comics.last?.num ?? 2_000)
+        stepper.maximumValue = Double(comics.last?.num ?? 2_239)
         stepper.stepValue = 1.0
         stepper.value = Double(comics.first?.num ?? 1)
     }
