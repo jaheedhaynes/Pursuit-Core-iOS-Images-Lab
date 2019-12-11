@@ -31,7 +31,7 @@ class ComicsViewController: UIViewController {
     }
     
 //---------------------------------------------------------
-    
+    //MARK: Method to load the image of the client
     func loadComicImage(comicImage: String){
         NetworkHelper.shared.performDataTask(with: comicImage) { (result) in
             switch result{
@@ -46,6 +46,7 @@ class ComicsViewController: UIViewController {
         }
     }
     
+    //MARK: Method to assign comic image to stepper value
     func loadComic(comic:Int){
         ComicAPIClient.getComic(for: comic) { (result) in
             switch result{
@@ -64,7 +65,7 @@ class ComicsViewController: UIViewController {
     
 
     
-    
+    //MARK: Method for stepper value's
     func configureStepper(){
         stepper.minimumValue = Double(comics.first?.num ?? 1)
         stepper.maximumValue = Double(comics.last?.num ?? 2_239)
