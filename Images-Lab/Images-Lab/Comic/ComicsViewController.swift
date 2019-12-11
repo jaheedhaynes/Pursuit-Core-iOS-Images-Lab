@@ -31,7 +31,21 @@ class ComicsViewController: UIViewController {
     }
     
 //---------------------------------------------------------
-
+    
+    func loadComicImage(comicImage: String){
+        NetworkHelper.shared.performDataTask(with: comicImage) { (result) in
+            switch result{
+            case .failure(let appError):
+                print("appError: \(appError)")
+            case .success(let data):
+                let image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+            }
+        }
+    }
+    
     func loadComic(comic:Int){
         ComicAPIClient.getComic(for: comic) { (result) in
             switch result{
@@ -48,19 +62,7 @@ class ComicsViewController: UIViewController {
         }
     }
     
-    func loadComicImage(comicImage: String){
-        NetworkHelper.shared.performDataTask(with: comicImage) { (result) in
-            switch result{
-            case .failure(let appError):
-                print("appError: \(appError)")
-            case .success(let data):
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-            }
-        }
-    }
+
     
     
     func configureStepper(){
